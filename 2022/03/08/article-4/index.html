@@ -16,25 +16,22 @@
   <meta name="author" content="Robbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.创建一个 package.json 文件npm init 2.下载包，–sava 是用来记录并保存下载的包名称在 package.json 文件中npm install 包名称 –save install 可简写成 i如：npm install express –save #可简写形式 npm i express–save在别的地方用安装过得包，只要拷贝 package.json 文件放到要安">
+    <meta name="description" content="背景typeof 和 instanceof 操作符都是用来判断数据类型的，但是它们的使用场景却各不相同，其中一些细节也需要特别注意。接下来让我们一探究竟，彻底掌握该知识点，再也不惧面试官的提问。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建简单的Nodejs服务器">
-<meta property="og:url" content="https://robbinweb.github.io/2022/03/04/article/index.html">
+<meta property="og:title" content="【面试】说说 typeof 和 instanceof 的区别">
+<meta property="og:url" content="https://robbinweb.github.io/2022/03/08/article-4/index.html">
 <meta property="og:site_name" content="Robbin&#39;s blog">
-<meta property="og:description" content="1.创建一个 package.json 文件npm init 2.下载包，–sava 是用来记录并保存下载的包名称在 package.json 文件中npm install 包名称 –save install 可简写成 i如：npm install express –save #可简写形式 npm i express–save在别的地方用安装过得包，只要拷贝 package.json 文件放到要安">
+<meta property="og:description" content="背景typeof 和 instanceof 操作符都是用来判断数据类型的，但是它们的使用场景却各不相同，其中一些细节也需要特别注意。接下来让我们一探究竟，彻底掌握该知识点，再也不惧面试官的提问。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://robbinweb.github.io/images/node.jpeg">
-<meta property="article:published_time" content="2022-03-04T03:16:39.000Z">
-<meta property="article:modified_time" content="2022-03-03T06:19:35.000Z">
+<meta property="article:published_time" content="2022-03-08T02:06:30.000Z">
+<meta property="article:modified_time" content="2022-03-08T02:06:30.000Z">
 <meta property="article:author" content="Robbin">
-<meta property="article:tag" content="#nodejs">
-<meta property="article:tag" content="#express">
-<meta property="article:tag" content="#后端">
+<meta property="article:tag" content="#前端">
+<meta property="article:tag" content="#面试">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://robbinweb.github.io/images/node.jpeg">
   
   
-  <title>创建简单的Nodejs服务器 - Robbin&#39;s blog</title>
+  <title>【面试】说说 typeof 和 instanceof 的区别 - Robbin&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -244,7 +241,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="创建简单的Nodejs服务器">
+            <span class="h2" id="subtitle" title="【面试】说说 typeof 和 instanceof 的区别">
               
             </span>
 
@@ -259,8 +256,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-04 11:16" pubdate>
-        2022-03-04, 11:16
+      <time datetime="2022-03-08 10:06" pubdate>
+        2022-03-08, 10:06
       </time>
     </span>
   
@@ -270,7 +267,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      2k 字
     </span>
   
 
@@ -279,7 +276,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10 分钟
+      17 分钟
     </span>
   
 
@@ -308,29 +305,35 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">创建简单的Nodejs服务器</h1>
+            <h1 style="display: none">【面试】说说 typeof 和 instanceof 的区别</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：5 天前
+                  本文最后更新于：1 小时前
                 
               </p>
             
             <div class="markdown-body">
-              <p>1.创建一个 package.json 文件<br>npm init</p>
-<p>2.下载包，–sava 是用来记录并保存下载的包名称在 package.json 文件中<br>npm install 包名称 –save install 可简写成 i<br>如：npm install express –save #可简写形式 npm i express–save<br>在别的地方用安装过得包，只要拷贝 package.json 文件放到要安装的路径下并运行第 1 步</p>
-<p>3.1 express 必须 &#x2F;&#x2F;–sav 是把下载的包名称保存到 package.json 文件中<br>npm install express –save</p>
-<p>3.2 bodyParser 用于解析客户端请求的 body 中的内容,内部使用 JSON 编码处理,url 编码处理以及对于文件的上传处理.<br>npm i body-parser –save</p>
-<p>3.3 mysql 用到数据库下载这个<br>npm install mysql –save</p>
-<p>3.4 cors 跨域<br>npm i cors –save</p>
-<p>下载完成后，在根目录下创建服务器</p>
-<ol>
-<li>创建 server.js 文件<br>server.js 文件代码如下</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入结构件</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><span class="hljs-keyword">const</span> mysql = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;mysql&quot;</span>);<br><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;body-parser&quot;</span>);<br><span class="hljs-keyword">const</span> cors = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;cors&quot;</span>);<br><br><span class="hljs-comment">// 使用express构建web服务器</span><br><span class="hljs-keyword">var</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-keyword">var</span> server = app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">4000</span>,<span class="hljs-function">()=&gt;</span>&#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;服务器启动成功,IP地址为:http://localhost:4000&quot;</span>);<br>&#125;);<br><br><span class="hljs-comment">// 配置跨域模块，允许那个地址可以跨域访问</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">cors</span>(&#123;<br><span class="hljs-attr">orign</span>: [<span class="hljs-string">&quot;http://127.0.0.1:8080&quot;</span>,<br><span class="hljs-string">&quot;http://localhost:8080&quot;</span>],<br><span class="hljs-attr">credentials</span>:<span class="hljs-literal">true</span><br>&#125;));<br><br><span class="hljs-comment">// 使用body-parser中间件</span><br>app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">urlencoded</span>(&#123;<span class="hljs-attr">extended</span>:<span class="hljs-literal">false</span>&#125;));<br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/&quot;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&quot;服务器启动成功&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+              <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>typeof 和 instanceof 操作符都是用来判断数据类型的，但是它们的使用场景却各不相同，其中一些细节也需要特别注意。接下来让我们一探究竟，彻底掌握该知识点，再也不惧面试官的提问。</p>
+<span id="more"></span>
 
-<p>然后在浏览器中访问自己设置的 IP 地址 localhost:4000</p>
-<p><img src="/./images/node-server.png" srcset="/images/common/loading.gif" lazyload alt="node服务"></p>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>typeof 是一个一元运算符，放在一个运算数前面，这个运算数可以是任何类型。它返回一个字符串，说明运算数的类型。请看栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> type =  <span class="hljs-keyword">typeof</span> <span class="hljs-string">&#x27;中国万岁&#x27;</span>; <span class="hljs-comment">// string</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-number">666</span>; <span class="hljs-comment">// number</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// boolean</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Symbol</span>(); <span class="hljs-comment">// symbol</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-number">1n</span>; <span class="hljs-comment">// bigint</span><br><span class="hljs-keyword">typeof</span> () =&gt; &#123;&#125;; <span class="hljs-comment">// function</span><br><br><span class="hljs-keyword">typeof</span> []; <span class="hljs-comment">// object</span><br><span class="hljs-keyword">typeof</span> &#123;&#125;; <span class="hljs-comment">// object</span><br><span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>); <span class="hljs-comment">// object</span><br><br><span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// object</span><br></code></pre></td></tr></table></figure>
+
+<p>通过以上例子可以看出，typeof 只能准确判断基本数据类型和函数（函数其实是对象，并不属于另一种数据类型，但也能够使用 typeof 进行区分），无法精确判断出引用数据类型（统统返回 object）。<br>有一点需要注意，调用 typeof null 返回的是 object，这是因为特殊值 null 被认为是一个对空对象的引用（也叫空对象指针）。<br>如果想准确判断引用数据类型，可以用 instanceof 运算符。</p>
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>instanceof 运算符放在一个运算数的后面，对象的前面。它返回一个布尔值，说明运算数是否是某个对象的实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> result = [] <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>; <span class="hljs-comment">// true</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Person</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;;<br><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>p <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Person</span>; <span class="hljs-comment">// true</span><br><br><span class="hljs-keyword">const</span> message = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>);<br>message <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">String</span>; <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>typeof 会返回一个运算数的基本类型，instanceof 返回的是布尔值</p>
+<p>instanceof 可以准确判断引用数据类型，但是不能正确判断基本数据类型</p>
+<p>typeof 虽然可以判断基本数据类型（null 除外），但是无法判断引用数据类型（function 除外）</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>Object.prototype.toString.call()<br>typeof 和 instanceof 都有一定的弊端，并不能满足所有场景的需求。如果需要通用检测数据类型，可以使用 Object.prototype.toString.call()方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(&#123;&#125;); <span class="hljs-comment">// &quot;[object Object]&quot;</span><br><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>([]); <span class="hljs-comment">// &quot;[object Array]&quot;</span><br><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(<span class="hljs-number">666</span>); <span class="hljs-comment">// &quot;[object Number]&quot;</span><br><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>); <span class="hljs-comment">// &quot;[object String]&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>注意，该方法返回的是一个格式为”[object Object]”的字符串。<br>封装函数<br>为了更方便的使用，我们可以将这个方法进行封装：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getType</span>(<span class="hljs-params">value</span>) &#123;<br>    <span class="hljs-keyword">let</span> type = <span class="hljs-keyword">typeof</span> value;<br>    <span class="hljs-keyword">if</span> (type !== <span class="hljs-string">&#x27;object&#x27;</span>) &#123; <span class="hljs-comment">// 如果是基本数据类型，直接返回</span><br>        <span class="hljs-keyword">return</span> type;<br>    &#125;<br>    <span class="hljs-comment">// 如果是引用数据类型，再进一步判断，正则返回结果</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(value).<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^\[object (\S+)\]$/</span>, <span class="hljs-string">&#x27;$1&#x27;</span>);<br>&#125;<br><br><span class="hljs-title function_">getType</span>(<span class="hljs-number">123</span>); <span class="hljs-comment">// number</span><br><span class="hljs-title function_">getType</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>); <span class="hljs-comment">// string</span><br><span class="hljs-title function_">getType</span>(<span class="hljs-function">() =&gt;</span> &#123;&#125;); <span class="hljs-comment">// function</span><br><span class="hljs-title function_">getType</span>([]); <span class="hljs-comment">// Array</span><br><span class="hljs-title function_">getType</span>(&#123;&#125;); <span class="hljs-comment">// Object</span><br><span class="hljs-title function_">getType</span>(<span class="hljs-literal">null</span>); <span class="hljs-comment">// Null</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>如果文中有错误或者不足之处，欢迎大家在评论区指正。</p>
 
             </div>
             <hr>
@@ -340,7 +343,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/nodejs/">nodejs</a>
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -348,11 +351,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/nodejs/">#nodejs</a>
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
                     
-                      <a class="hover-with-bg" href="/tags/express/">#express</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%90%8E%E7%AB%AF/">#后端</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
                     
                   </div>
                 
@@ -369,15 +370,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/04/article-1/">
+                      <a href="/2022/03/08/article-5/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">初学者前端入门路线</span>
+                        <span class="hidden-mobile">优雅的 JavaScript 个技巧</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/03/07/article-3/">
+                        <span class="hidden-mobile">Fluid 页脚增加网站运行时长</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
